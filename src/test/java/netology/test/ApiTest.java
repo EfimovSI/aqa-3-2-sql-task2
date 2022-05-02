@@ -1,6 +1,5 @@
 package netology.test;
 
-import io.restassured.response.ResponseBody;
 import netology.data.ApiUtils;
 import netology.data.Card;
 import netology.data.User;

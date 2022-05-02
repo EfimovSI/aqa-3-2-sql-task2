@@ -1,26 +1,19 @@
 package netology.data;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
-import org.json.JSONObject;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ApiUtils {
-    public ApiUtils() {}
-
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
             .setPort(9999)
@@ -29,6 +22,9 @@ public class ApiUtils {
             .log(LogDetail.ALL)
             .build();
 
+    public ApiUtils() {
+    }
+
     @SneakyThrows
     public static void login(User user) {
         RequestSpecification request = RestAssured.given();
@@ -36,7 +32,7 @@ public class ApiUtils {
         request.body("{\n" +
                 "\"login\": \"" + user.getLogin() + "\",\n" +
                 "\"password\": \"" + user.getPassword() + "\"\n" +
-        "}");  // передаём в теле объект, который будет преобразован в JSON
+                "}");  // передаём в теле объект, который будет преобразован в JSON
         Response response = request.post("/api/auth");
 
         assertThat(response.statusCode(), equalTo(200)); // промежуточная проверка

@@ -7,7 +7,8 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import java.sql.DriverManager;
 
 public class DbUtils {
-    public DbUtils() {}
+    public DbUtils() {
+    }
 
     @SneakyThrows
     public static String getVerificationCode() {
